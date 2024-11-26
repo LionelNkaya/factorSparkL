@@ -1,0 +1,124 @@
+body {
+    background: linear-gradient(135deg, #FFDEE9 0%, #B5FFFC 100%);
+    font-family: 'Comic Sans MS', 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: #ffffff;
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    width: 90%;
+    max-width: 450px;
+    text-align: center;
+    border: 5px solid #FFB6C1;
+    transition: transform 0.3s ease;
+}
+
+h1 {
+    color: #FF6347;
+    font-size: 2.8em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: #FF6347;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 30px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    font-family: 'Comic Sans MS', 'Arial', sans-serif;
+    margin: 0 10px;
+}
+
+button.active {
+    background-color: #FF4500;
+}
+
+button:hover {
+    background-color: #FF4500;
+    transform: scale(1.08);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.input-group {
+    margin: 20px 0;
+}
+
+label {
+    display: block;
+    margin-bottom: 12px;
+    color: #333;
+    font-size: 1.4em;
+}
+
+input {
+    width: 85%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 3px solid #FFB6C1;
+    border-radius: 12px;
+    font-size: 1.2em;
+    transition: border-color 0.3s;
+    background-color: #FFF0F5;
+}
+
+input:focus {
+    border-color: #FF69B4;
+    outline: none;
+}
+
+#quizArea {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.hidden {
+    display: none;
+}
+
+#feedback {
+    font-size: 1.4em;
+    margin-top: 15px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+#scoreArea {
+    margin-top: 25px;
+    font-size: 1.4em;
+    color: #555;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
