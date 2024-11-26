@@ -9,35 +9,26 @@
 <body>
     <div class="container">
         <h1>FactorSpark ⚡</h1>
-
-        <!-- Tabs for mobile navigation -->
-        <div class="tabs">
-            <button class="tab-button active" onclick="openTab('inputTab')">Setup</button>
-            <button class="tab-button" onclick="openTab('quizTab')">Quiz</button>
+        
+        <!-- Input for max number -->
+        <div class="input-group">
+            <label for="maxNumber">How high do you want to go?</label>
+            <input type="number" id="maxNumber" placeholder="Enter max number" min="2" max="20">
+            <button onclick="startQuiz()">Start Quiz</button>
         </div>
-
-        <!-- Setup Tab -->
-        <div id="inputTab" class="tab-content active">
-            <div class="input-group">
-                <label for="maxNumber">How high do you want to go?</label>
-                <input type="number" id="maxNumber" placeholder="Enter max number" min="2" max="20">
-                <button onclick="startQuiz()">Start Quiz</button>
-            </div>
+        
+        <!-- Quiz area -->
+        <div id="quizArea" class="hidden">
+            <h2 id="question"></h2>
+            <input type="number" id="answer" placeholder="Your answer">
+            <button onclick="submitAnswer()">Submit</button>
+            <p id="feedback"></p>
         </div>
-
-        <!-- Quiz Tab -->
-        <div id="quizTab" class="tab-content hidden">
-            <div id="quizArea">
-                <h2 id="question"></h2>
-                <input type="number" id="answer" placeholder="Your answer">
-                <button onclick="submitAnswer()">Submit</button>
-                <p id="feedback"></p>
-            </div>
-            <!-- Score display -->
-            <div id="scoreArea">
-                <p>Current Streak: <span id="streak">0</span></p>
-                <p>High Score: <span id="highScore">0</span></p>
-            </div>
+        
+        <!-- Score display -->
+        <div id="scoreArea">
+            <p>Current Streak: <span id="streak">0</span></p>
+            <p>High Score: <span id="highScore">0</span></p>
         </div>
     </div>
 
