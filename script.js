@@ -1,25 +1,10 @@
 let maxNumber;
 let currentStreak = 0;
-let highScore = localStorage.getItem('highScore') || 0; // Load high score from local storage
+let highScore = localStorage.getItem('highScore') || 0;
 let correctAnswer;
 
 // Update high score on page load
 document.getElementById('highScore').innerText = highScore;
-
-// Function to switch between Setup and Quiz tabs
-function switchTab(tab) {
-    if (tab === 'setup') {
-        document.getElementById('setup').classList.add('active');
-        document.getElementById('quiz').classList.remove('active');
-        document.getElementById('setupTab').classList.add('active');
-        document.getElementById('quizTab').classList.remove('active');
-    } else {
-        document.getElementById('quiz').classList.add('active');
-        document.getElementById('setup').classList.remove('active');
-        document.getElementById('quizTab').classList.add('active');
-        document.getElementById('setupTab').classList.remove('active');
-    }
-}
 
 // Function to start the quiz
 function startQuiz() {
@@ -34,7 +19,6 @@ function startQuiz() {
     document.getElementById('streak').innerText = currentStreak;
     document.getElementById('quizArea').classList.remove('hidden');
     generateQuestion();
-    switchTab('quiz'); // Switch to Quiz tab
 }
 
 // Function to generate a random multiplication question
@@ -51,9 +35,19 @@ function generateQuestion() {
 
 // Function to check the user's answer
 function submitAnswer() {
-    const userAnswer = parseInt(document.getElementById('answer').value);
+    const answerField = document.getElementById('answer');
+    const userAnswer = answerField.value.trim();  // Trim to avoid counting spaces
     
-    if (userAnswer === correctAnswer) {
+    if (userAnswer === '') {
+        // Add the shake effect
+        answerField.classList.add('shake');
+        setTimeout(() => answerField.classList.remove('shake'), 300); // Remove class after animation
+        return;
+    }
+
+    const parsedAnswer = parseInt(userAnswer);
+
+    if (parsedAnswer === correctAnswer) {
         currentStreak++;
         document.getElementById('feedback').innerText = 'Correct! 🎉';
         document.getElementById('feedback').style.color = '#008000';
@@ -72,7 +66,7 @@ function updateStreak() {
     
     if (currentStreak > highScore) {
         highScore = currentStreak;
-        localStorage.setItem('highScore', highScore); // Save new high score
+        localStorage.setItem('highScore', highScore);
         document.getElementById('highScore').innerText = highScore;
     }
 }
