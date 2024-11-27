@@ -1,5 +1,5 @@
 body {
-    background-color: #f0f8ff;
+    background: linear-gradient(to bottom right, #ffb6c1, #add8e6);
     font-family: 'Comic Sans MS', 'Arial', sans-serif;
     display: flex;
     justify-content: center;
