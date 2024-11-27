@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(135deg, #FFDEE9 0%, #B5FFFC 100%);
+    background-color: #f0f8ff;
     font-family: 'Comic Sans MS', 'Arial', sans-serif;
     display: flex;
     justify-content: center;
@@ -10,49 +10,41 @@ body {
 
 .container {
     background-color: #ffffff;
-    border-radius: 25px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
     width: 90%;
-    max-width: 450px;
+    max-width: 400px;
     text-align: center;
-    border: 5px solid #FFB6C1;
-    transition: transform 0.3s ease;
 }
 
 h1 {
-    color: #FF6347;
-    font-size: 2.8em;
-    margin-bottom: 10px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    color: #ff6600;
+    font-size: 2em;
 }
 
 .tabs {
-    display: flex;
-    justify-content: center;
     margin-bottom: 20px;
 }
 
-button {
-    background-color: #FF6347;
+.tabs button {
+    background-color: #ff6600;
     color: white;
     border: none;
-    border-radius: 12px;
-    padding: 12px 30px;
+    padding: 10px 20px;
     font-size: 1.2em;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-    font-family: 'Comic Sans MS', 'Arial', sans-serif;
+    border-radius: 8px;
     margin: 0 10px;
+    transition: background-color 0.3s;
 }
 
-button.active {
-    background-color: #FF4500;
+.tabs button:hover {
+    background-color: #ff8533;
 }
 
-button:hover {
-    background-color: #FF4500;
-    transform: scale(1.08);
+.tabs button.active {
+    background-color: #ff8533;
 }
 
 .tab-content {
@@ -63,35 +55,27 @@ button:hover {
     display: block;
 }
 
-.input-group {
-    margin: 20px 0;
+input, button {
+    margin: 10px;
+    padding: 10px;
+    font-size: 1em;
 }
 
-label {
-    display: block;
-    margin-bottom: 12px;
-    color: #333;
-    font-size: 1.4em;
+button {
+    background-color: #ff6600;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-input {
-    width: 85%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border: 3px solid #FFB6C1;
-    border-radius: 12px;
-    font-size: 1.2em;
-    transition: border-color 0.3s;
-    background-color: #FFF0F5;
-}
-
-input:focus {
-    border-color: #FF69B4;
-    outline: none;
+button:hover {
+    background-color: #ff8533;
 }
 
 #quizArea {
-    animation: fadeIn 0.5s ease-in-out;
+    margin-top: 20px;
 }
 
 .hidden {
@@ -99,38 +83,26 @@ input:focus {
 }
 
 #feedback {
-    font-size: 1.4em;
-    margin-top: 15px;
-    font-weight: bold;
-    transition: color 0.3s;
+    font-size: 1.2em;
+    margin-top: 10px;
+    color: #008000;
 }
 
 #scoreArea {
-    margin-top: 25px;
-    font-size: 1.4em;
-    color: #555;
-}
-
-/* Fade-in animation */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #333;
 }
 
 /* Shake animation */
 @keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25%, 75% { transform: translateX(-10px); }
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
     50% { transform: translateX(10px); }
+    75% { transform: translateX(-10px); }
+    100% { transform: translateX(0); }
 }
 
 .shake {
     animation: shake 0.3s ease-in-out;
 }
-

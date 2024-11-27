@@ -1,33 +1,49 @@
 let maxNumber;
 let currentStreak = 0;
-let highScore = localStorage.getItem('highScore') || 0;
+let highScore = localStorage.getItem('highScore') || 0; // Load high score from local storage
 let correctAnswer;
 
 // Update high score on page load
 document.getElementById('highScore').innerText = highScore;
 
+// Function to switch between Setup and Quiz tabs
+function switchTab(tab) {
+    if (tab === 'setup') {
+        document.getElementById('setup').classList.add('active');
+        document.getElementById('quiz').classList.remove('active');
+        document.getElementById('setupTab').classList.add('active');
+        document.getElementById('quizTab').classList.remove('active');
+    } else {
+        document.getElementById('quiz').classList.add('active');
+        document.getElementById('setup').classList.remove('active');
+        document.getElementById('quizTab').classList.add('active');
+        document.getElementById('setupTab').classList.remove('active');
+    }
+}
+
 // Function to start the quiz
 function startQuiz() {
     maxNumber = parseInt(document.getElementById('maxNumber').value);
-    
+
     if (!maxNumber || maxNumber < 2) {
         alert('Please enter a valid maximum number (2 or higher).');
         return;
     }
-    
+
     currentStreak = 0;
     document.getElementById('streak').innerText = currentStreak;
     document.getElementById('quizArea').classList.remove('hidden');
     generateQuestion();
+    switchTab('quiz'); // Switch to Quiz tab
 }
 
 // Function to generate a random multiplication question
 function generateQuestion() {
     const num1 = Math.floor(Math.random() * maxNumber) + 1;
     const num2 = Math.floor(Math.random() * maxNumber) + 1;
-    
+
     correctAnswer = num1 * num2;
-    
+
     document.getElementById('question').innerText = `${num1} × ${num2}`;
     document.getElementById('answer').value = '';
     document.getElementById('feedback').innerText = '';
@@ -35,19 +51,14 @@ function generateQuestion() {
 
 // Function to check the user's answer
 function submitAnswer() {
-    const answerField = document.getElementById('answer');
-    const userAnswer = answerField.value.trim();  // Trim to avoid counting spaces
-    
-    if (userAnswer === '') {
+    const userAnswer = parseInt(document.getElementById('answer').value);
+    const answerField = document.getElementById('answer'); // Add this line to get the reference to the input field
+
+    if (userAnswer === '' || isNaN(userAnswer)) { // Check if answer is empty or not a valid number
         // Add the shake effect
         answerField.classList.add('shake');
-        setTimeout(() => answerField.classList.remove('shake'), 300); // Remove class after animation
-        return;
-    }
-
-    const parsedAnswer = parseInt(userAnswer);
-
-    if (parsedAnswer === correctAnswer) {
+        setTimeout(() => answerField.classList.remove('shake'), 300); // Remove the shake after 300ms
+    } else if (userAnswer === correctAnswer) {
         currentStreak++;
         document.getElementById('feedback').innerText = 'Correct! 🎉';
         document.getElementById('feedback').style.color = '#008000';
@@ -60,13 +71,21 @@ function submitAnswer() {
     }
 }
 
+// Add event listener for 'Enter' key submission
+document.getElementById('answer').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault(); // Prevent form submission
+        submitAnswer();
+    }
+});
+
 // Function to update the streak and check for new high score
 function updateStreak() {
     document.getElementById('streak').innerText = currentStreak;
-    
+
     if (currentStreak > highScore) {
         highScore = currentStreak;
-        localStorage.setItem('highScore', highScore);
+        localStorage.setItem('highScore', highScore); // Save new high score
         document.getElementById('highScore').innerText = highScore;
     }
 }
@@ -77,5 +96,6 @@ function endQuiz() {
     setTimeout(() => {
         alert('Game over! Try again to beat your high score!');
         document.getElementById('quizArea').classList.add('hidden');
+        switchTab('setup'); // Switch back to Setup tab
     }, 1000);
 }
